@@ -64,7 +64,9 @@ convertedValueEl.textContent = exchangeRateData.conversion_rates.EUR.toFixed(2)
 valuePrecisionEl.textContent = `1 USD = ${exchangeRateData.conversion_rates.EUR} EUR`
 }
 
-timesCurrencyOneEl
+timesCurrencyOneEl.addEventListener('input', () => {
+    
+})
 
 init()
 
