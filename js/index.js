@@ -1,5 +1,6 @@
 const currencyOneEl = document.querySelector('[data-js="currency-one"]')
 const currencyTwoEl = document.querySelector('[data-js="currency-two"]')
+const currenciesEl = document.querySelector('[data-js="currencies-container"]')
 
 const url = 'https://v6.exchangerate-api.com/v6/aacbfd8276f71f627217b4ec/latest/USD'
 
@@ -27,6 +28,15 @@ const fetchExchangeRate = async () =>{
         
     }catch(err){
         alert(err.message)
+        const div = document.createElement('div')
+        const button = document.createElement('button')
+
+        div.textContent = err.message
+        div.classList.add('alert', 'alert-warning', 'alert-dismissible', 'fade', 'show')
+        button.classList.add('btn-close')
+
+        div.appendChild(button)
+        currenciesEl.insertAdjacentElement('afterend', div)
         /*
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
            Mensagem do erro 
