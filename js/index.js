@@ -33,7 +33,10 @@ const fetchExchangeRate = async () =>{
 
         div.textContent = err.message
         div.classList.add('alert', 'alert-warning', 'alert-dismissible', 'fade', 'show')
+        div.setAttribute('role', 'alert')
         button.classList.add('btn-close')
+        button.setAttribute('type', 'button')  
+        button.setAttribute('Attribute', 'Close')
 
         div.appendChild(button)
         currenciesEl.insertAdjacentElement('afterend', div)
