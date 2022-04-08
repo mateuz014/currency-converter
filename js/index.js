@@ -27,6 +27,12 @@ const fetchExchangeRate = async () =>{
         
     }catch(err){
         alert(err.message)
+        /*
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+           Mensagem do erro 
+            <button type="button" class="btn-close"  aria-label="Close"></button>
+        </div>
+        */
     }
 }
 
