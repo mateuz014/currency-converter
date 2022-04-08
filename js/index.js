@@ -1,6 +1,7 @@
 const currencyOneEl = document.querySelector('[data-js="currency-one"]')
 const currencyTwoEl = document.querySelector('[data-js="currency-two"]')
 const currenciesEl = document.querySelector('[data-js="currencies-container"]')
+const convertedValueEl = document.querySelector('[data-js="converted-value"]')
 
 const url = 'https://v6.exchangerate-api.com/v6/aacbfd8276f71f627217b4ec/latest/USD'
 
@@ -52,10 +53,12 @@ const init = async () => {
 
     Object.keys(exchangeRateData.conversion_rates).map(currency => `<option>${currency}</option>`)
 
-    const options = Object.keys(exchangeRateData.conversion_rates).map(currency => `<option>${currency}</option>`).join('')
+    const getOptions = selectedCurrency => Object.keys(exchangeRateData.conversion_rates).map(currency => `<option ${currency === selectedCurrency ? 'selected' : ''}>${currency}</option>`).join('')
 
-currencyOneEl.innerHTML = options
-currencyTwoEl.innerHTML = options
+currencyOneEl.innerHTML = getOptions('USD')
+currencyTwoEl.innerHTML = getOptions('EUR')
+
+convertedValueEl.textContent = exchangeRateData.conversion_rates.EUR
 }
 
 init()
