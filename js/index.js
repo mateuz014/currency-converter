@@ -25,7 +25,7 @@ const fetchExchangeRate = async () =>{
     if (exchangeRateData.result === 'error'){
         throw new Error(getErrormessage(exchangeRateData['error-type']))
     }
-        
+     return exchangeRateData   
     }catch(err){
         alert(err.message)
         const div = document.createElement('div')
@@ -36,22 +36,27 @@ const fetchExchangeRate = async () =>{
         div.setAttribute('role', 'alert')
         button.classList.add('btn-close')
         button.setAttribute('type', 'button')  
-        button.setAttribute('Attribute', 'Close')
+        button.setAttribute('aria-label', 'Close')
+
+        button.addEventListener('click', () => {
+            div.remove()
+        })
 
         div.appendChild(button)
         currenciesEl.insertAdjacentElement('afterend', div)
-        /*
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-           Mensagem do erro 
-            <button type="button" class="btn-close"  aria-label="Close"></button>
-        </div>
-        */
     }
 }
 
-fetchExchangeRate()
+const init = async () => {
+    const exchangeRateData = await fetchExchangeRate()
 
-const option = `<option>oi</option>`
+    Object.keys(exchangeRateData.conversion_rates).map(currency => `<option>${currency}</option>`)
 
-currencyOneEl.innerHTML = option
-currencyTwoEl.innerHTML = option
+    const options = Object.keys(exchangeRateData.conversion_rates).map(currency => `<option>${currency}</option>`).join('')
+
+currencyOneEl.innerHTML = options
+currencyTwoEl.innerHTML = options
+}
+
+init()
+
