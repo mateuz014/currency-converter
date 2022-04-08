@@ -3,7 +3,7 @@ const currencyTwoEl = document.querySelector('[data-js="currency-two"]')
 const currenciesEl = document.querySelector('[data-js="currencies-container"]')
 const convertedValueEl = document.querySelector('[data-js="converted-value"]')
 const valuePrecisionEl = document.querySelector('[data-js="conversion-precision"]')
-const timesCurrencyOneEl = document.querySelector('[data-js="currency-on-times"]')
+const timesCurrencyOneEl = document.querySelector()
 
 const url = 'https://v6.exchangerate-api.com/v6/aacbfd8276f71f627217b4ec/latest/USD'
 
@@ -63,10 +63,6 @@ currencyTwoEl.innerHTML = getOptions('EUR')
 convertedValueEl.textContent = exchangeRateData.conversion_rates.EUR.toFixed(2)
 valuePrecisionEl.textContent = `1 USD = ${exchangeRateData.conversion_rates.EUR} EUR`
 }
-
-timesCurrencyOneEl.addEventListener('input', () => {
-    convertedValueEl.textContent = e.target.value
-})
 
 init()
 
