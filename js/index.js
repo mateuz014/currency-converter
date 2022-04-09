@@ -7,7 +7,7 @@ const timesCurrencyOneEl = document.querySelector('[data-js="currency-one-times"
 
 let internalExchangeRate = {}
 
-const url = 'https://v6.exchangerate-api.com/v6/aacbfd8276f71f627217b4ec/latest/USD'
+const getUrl = currency => `https://v6.exchangerate-api.com/v6/aacbfd8276f71f627217b4ec/latest/${currency}`
 
 const getErrormessage = errorType => ({
     'unsupported-code' : 'Currency does not exist in our database.',
@@ -17,7 +17,7 @@ const getErrormessage = errorType => ({
     'inactive-account' : 'Your email address was not confirme.'
 })[errorType] || 'Could not get information.'
 
-const fetchExchangeRate = async () =>{
+const fetchExchangeRate = async url =>{
     try {
     const response = await fetch(url)
 
@@ -53,7 +53,7 @@ const fetchExchangeRate = async () =>{
 }
 
 const init = async () => {
-    const exchangeRateData = await fetchExchangeRate()
+    const exchangeRateData = await fetchExchangeRate(getUrl('USD'))
 
     internalExchangeRate = {...exchangeRateData}
 
@@ -78,6 +78,10 @@ currencyTwoEl.addEventListener('input', e => {
 
     convertedValueEl.textContent = (timesCurrencyOneEl.value * currencyTwoValue).toFixed(2)
     valuePrecisionEl.textContent = `1 USD = ${1 * internalExchangeRate.conversion_rates[currencyTwoEl.value]} ${currencyTwoEl.value}`
+})
+
+currencyOneEl.addEventListener('input', () => {
+
 })
 
 init()
