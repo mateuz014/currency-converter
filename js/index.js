@@ -80,8 +80,10 @@ currencyTwoEl.addEventListener('input', e => {
     valuePrecisionEl.textContent = `1 USD = ${1 * internalExchangeRate.conversion_rates[currencyTwoEl.value]} ${currencyTwoEl.value}`
 })
 
-currencyOneEl.addEventListener('input', () => {
+currencyOneEl.addEventListener('input', async e => {
+    const exchangeRateData = await fetchExchangeRate(getUrl(e.target.value))
 
+    internalExchangeRate = {...exchangeRateData}
 })
 
 init()
