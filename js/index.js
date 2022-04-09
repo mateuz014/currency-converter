@@ -53,9 +53,9 @@ const fetchExchangeRate = async url =>{
 }
 
 const init = async () => {
-    const exchangeRateData = await fetchExchangeRate(getUrl('USD'))
+    const exchangeRateData = 
 
-    internalExchangeRate = {...exchangeRateData}
+    internalExchangeRate = { ...(await fetchExchangeRate(getUrl('USD')))}
 
     Object.keys(internalExchangeRate.conversion_rates).map(currency => `<option>${currency}</option>`)
 
