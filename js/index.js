@@ -57,15 +57,15 @@ const init = async () => {
 
     internalExchangeRate = {...exchangeRateData}
 
-    Object.keys(exchangeRateData.conversion_rates).map(currency => `<option>${currency}</option>`)
+    Object.keys(internalExchangeRate.conversion_rates).map(currency => `<option>${currency}</option>`)
 
     const getOptions = selectedCurrency => Object.keys(exchangeRateData.conversion_rates).map(currency => `<option ${currency === selectedCurrency ? 'selected' : ''}>${currency}</option>`).join('')
 
 currencyOneEl.innerHTML = getOptions('USD')
 currencyTwoEl.innerHTML = getOptions('EUR')
 
-convertedValueEl.textContent = exchangeRateData.conversion_rates.EUR.toFixed(2)
-valuePrecisionEl.textContent = `1 USD = ${exchangeRateData.conversion_rates.EUR} EUR`
+convertedValueEl.textContent = internalExchangeRate.conversion_rates.EUR.toFixed(2)
+valuePrecisionEl.textContent = `1 USD = ${internalExchangeRate.conversion_rates.EUR} EUR`
 }
 
 timesCurrencyOneEl.addEventListener('input', e => {
