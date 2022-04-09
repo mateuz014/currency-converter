@@ -53,7 +53,7 @@ const fetchExchangeRate = async url =>{
 }
 
 const init = async () => {
-    const exchangeRateData = 
+    
 
     internalExchangeRate = { ...(await fetchExchangeRate(getUrl('USD')))}
 
