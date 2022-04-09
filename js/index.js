@@ -53,13 +53,9 @@ const fetchExchangeRate = async url =>{
 }
 
 const init = async () => {
-    
+       internalExchangeRate = { ...(await fetchExchangeRate(getUrl('USD')))}
 
-    internalExchangeRate = { ...(await fetchExchangeRate(getUrl('USD')))}
-
-    Object.keys(internalExchangeRate.conversion_rates).map(currency => `<option>${currency}</option>`)
-
-    const getOptions = selectedCurrency => Object.keys(exchangeRateData.conversion_rates).map(currency => `<option ${currency === selectedCurrency ? 'selected' : ''}>${currency}</option>`).join('')
+    const getOptions = selectedCurrency => Object.keys(internalExchangeRate.conversion_rates).map(currency => `<option ${currency === selectedCurrency ? 'selected' : ''}>${currency}</option>`).join('')
 
 currencyOneEl.innerHTML = getOptions('USD')
 currencyTwoEl.innerHTML = getOptions('EUR')
